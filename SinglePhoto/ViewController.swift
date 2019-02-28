@@ -22,12 +22,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         print("j'ai cliqué")
         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
-        
-        
+
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a photo", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
             imagePickerController.sourceType = .camera
-            self.present(imagePickerController, animated: true, completion: nil)
+                self.present(imagePickerController, animated: true, completion: nil)
         }))
         
         actionSheet.addAction(UIAlertAction(title: "Library", style: .default, handler: { (action:UIAlertAction) in
