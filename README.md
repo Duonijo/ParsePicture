@@ -5,7 +5,7 @@ Apps permit to delete duplicates pictures
 You failed a save ? Your pictures got duplicates ? Now you have to parse 5000 pictures one by one ? 
 Don't worry ! This app has to goal to solve this kind of problems.
 
-## How doest it work ?
+## How does it work ?
 Just hit button to start the parse, at the end, you'll have a view of all picture and a dot with the number of duplicates.
 You can select pictures that you want to clean or deselect them.
 
