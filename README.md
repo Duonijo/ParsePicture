@@ -11,6 +11,6 @@ You can select pictures that you want to clean or deselect them.
 
 ## Open Source and Free
 It's just a project because i had the problem himself, on the App Store a lot of this kind of App already exist, but all are paying.
-When finished, this app will be available for free !
+When finished, this app will be available for free on the App Store !
 
 Enjoy !
