@@ -12,24 +12,26 @@ import Photos
 
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate{
-
+    
     @IBOutlet weak var instructionLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageView2: UIImageView!
     @IBOutlet weak var Result: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
+    
+    var listImg: [UIImage] = []
     let imagePickerController = UIImagePickerController()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         checkPermission()
         imagePickerController.delegate = self
-
+        
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
     
     
     @IBAction func startButton(_ sender: Any) {
-        let data1 = imageView.image?.pngData();
+        /*let data1 = imageView.image?.pngData();
         let data2 = imageView2.image?.pngData()!;
         
         if(data1 == data2){
@@ -37,13 +39,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else {
             Result.text = "They are differents"
             
-        }
+        }*/
     }
     
     @IBAction func importButton(_ sender: Any) {
-        print("j'ai cliqué")
-        
-
+   
         let actionSheet = UIAlertController(title: "Photo Source", message: "Choose a photo", preferredStyle: .actionSheet)
         actionSheet.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
             self.imagePickerController.sourceType = .camera
@@ -56,7 +56,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }))
         
         self.present(actionSheet, animated: true, completion: nil)
-
+        
     }
     
     func checkPermission() {
@@ -66,30 +66,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization({ (newStatus) in print("status is \(newStatus)")
                 if newStatus == PHAuthorizationStatus.authorized { print("success") } })
-                case .restricted:  print("User do not have access to photo album.")
-                case .denied:  print("User has denied the permission.") } }
+        case .restricted:  print("User do not have access to photo album.")
+        case .denied:  print("User has denied the permission.") } }
     
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let img_base = #imageLiteral(resourceName: "Khet")
    
-        
         if let image = info[.originalImage] as?UIImage{
             print(image.hash)
-            
-            if((imageView.image?.isEqual(img_base))!){
-                imageView.image = image
-                instructionLabel.text = "Choose the second picture"
-                
-            } else {
-                imageView2.image = image
+            listImg.append(image)
+            countLabel.text = "Number pictures = " + String(listImg.count)
             }
-        } else{print("erooooooooor")}
-       
-   
+        
+        
         picker.dismiss(animated: true, completion: nil)
         dismiss(animated: true, completion: nil)
-
+        
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
